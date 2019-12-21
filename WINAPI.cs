@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace WindowSmasher {
     /// <summary>
@@ -46,5 +47,14 @@ namespace WindowSmasher {
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        private const int SW_SHOWNOACTIVATE = 4;
+        public static void ShowInactiveTopmost(Form f) {
+            ShowWindow(f.Handle, SW_SHOWNOACTIVATE);
+            SetWindowPos(f.Handle, (IntPtr)(-1), f.Left, f.Top, f.Width, f.Height, SetWindowPosFlags.DoNotActivate | SetWindowPosFlags.IgnoreMove | SetWindowPosFlags.IgnoreResize);
+        }
     }
 }

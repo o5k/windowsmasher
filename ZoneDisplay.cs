@@ -128,7 +128,7 @@ namespace WindowSmasher {
             ActivityTimer = 6;
             fadeTimer.Enabled = true;
             if (!Visible) {
-                Show();
+                WINAPI.ShowInactiveTopmost(this);
             }
         }
 
