@@ -22,8 +22,7 @@ namespace WindowSmasher {
         }
 
         private void ZoneDisplay_Load(object sender, EventArgs e) {
-            Location = SystemInformation.VirtualScreen.Location;
-            Size = SystemInformation.VirtualScreen.Size;
+            Refit();
 
             int initialStyle = WINAPI.GetWindowLong(Handle, -20);
             WINAPI.SetWindowLong(Handle, -20, initialStyle | 0x80000 | 0x20);
@@ -45,22 +44,33 @@ namespace WindowSmasher {
 
                 if (id == 0) {
                     // Win-Period
+                    Refit();
                     Ping();
                 }
                 if (id == 1) {
                     // Win-Enter
+                    Refit();
                     Attach();
                     Ping();
                 }
 
                 if (id >= 10 && id < 20) {
                     // Switch to preset id-10
+                    Refit();
                     currentPreset = (id - 10).ToString()[0];
                     ChangePresetImage();
                     Ping();
                 }
             }
             base.WndProc(ref m);
+        }
+
+        /// <summary>
+        /// Relocates the ZoneDisplay to its proper position.
+        /// </summary>
+        void Refit() {
+            Location = SystemInformation.VirtualScreen.Location;
+            Size = SystemInformation.VirtualScreen.Size;
         }
 
         /// <summary>
