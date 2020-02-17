@@ -12,7 +12,7 @@ It's Fancy Zones, but with less ease-of-use and more keyboard.
 3. Restart it (kill it in Task Manager then run it again)
 4. Use the following keybinds:
 	- **Windows + NumpadPeriod** to show all zones for your current preset
-	- **Windows + NumpadPlus** to attach the currently active window to the zone your cursor is pointing to
+	- **Windows + NumpadEnter** to attach the currently active window to the zone your cursor is pointing to
 	- **Windows + Numpad0 - Numpad9** to change preset
 
 ---
